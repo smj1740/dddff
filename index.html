@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>스마트 QR 생성기</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="header">
+      <a
+        class="logo-link"
+        href="https://www.kmou.ac.kr/kmou/main.do"
+        target="_blank"
+        rel="noopener noreferrer"
+        title="국립한국해양대학교 홈페이지"
+      >
+        <img
+          class="logo"
+          src="kmou-logo.png"
+          alt="국립한국해양대학교 로고"
+        />
+      </a>
+      <h1 class="title">스마트 QR 생성기</h1>
+      <p class="subtitle">URL을 입력하면 바로 찍을 수 있는 QR 코드를 만듭니다</p>
+    </header>
+
+    <nav class="category-nav" aria-label="카테고리">
+      <button class="category-btn is-active" type="button" data-view="create">
+        생성기
+      </button>
+      <button class="category-btn" type="button" data-view="gallery">
+        갤러리
+      </button>
+    </nav>
+
+    <main class="main">
+      <section id="create-view">
+        <form class="url-form" id="qr-form" autocomplete="off">
+          <label class="url-label" for="url-input">URL</label>
+          <div class="url-row">
+            <input
+              id="url-input"
+              class="url-input"
+              type="text"
+              inputmode="url"
+              placeholder="https://www.kmou.ac.kr/kmou/main.do"
+              required
+            />
+            <button class="generate-btn" type="submit">생성</button>
+          </div>
+          <p class="hint">http:// 또는 https://가 없으면 자동으로 https://를 붙입니다.</p>
+        </form>
+
+        <section class="qr-section" id="qr-section" hidden>
+          <p class="qr-caption">QR 코드를 클릭하면 이미지로 저장됩니다</p>
+          <button class="qr-download" id="qr-download" type="button" title="QR 이미지 다운로드">
+            <div id="qr-box"></div>
+          </button>
+          <p class="qr-url" id="qr-url"></p>
+        </section>
+      </section>
+
+      <section id="gallery-view" hidden>
+        <div class="gallery-header">
+          <h2 class="gallery-title">갤러리</h2>
+          <p class="gallery-desc">지금까지 만든 QR을 다시 보고 저장할 수 있습니다</p>
+        </div>
+        <p class="gallery-empty" id="gallery-empty">아직 저장된 QR이 없습니다.</p>
+        <div class="gallery-grid" id="gallery-grid"></div>
+      </section>
+    </main>
+
+    <dialog class="qr-dialog" id="qr-dialog">
+      <div class="dialog-card">
+        <button class="dialog-close" id="dialog-close" type="button" aria-label="닫기">
+          ×
+        </button>
+        <img class="dialog-qr" id="dialog-qr" alt="선택한 QR 코드" />
+        <p class="dialog-name" id="dialog-name"></p>
+        <p class="dialog-url" id="dialog-url"></p>
+        <button class="generate-btn dialog-download" id="dialog-download" type="button">
+          다운로드
+        </button>
+      </div>
+    </dialog>
+
+    <script src="qrcode.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
